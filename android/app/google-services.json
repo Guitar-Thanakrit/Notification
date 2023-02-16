@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659028778441",
+    "project_id": "nofi-6a606",
+    "storage_bucket": "nofi-6a606.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659028778441:android:d79660b3772a34740f9c18",
+        "android_client_info": {
+          "package_name": "com.example.notfi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659028778441-1tlm1rocv26951oueoosrm8fok8t6ag4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKlr_tjQPedU0KWqPc_V2mjVfj2iy7HCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659028778441-1tlm1rocv26951oueoosrm8fok8t6ag4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
