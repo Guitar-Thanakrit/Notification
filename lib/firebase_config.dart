@@ -27,4 +27,18 @@ dynamic notificationConfig() async {
   print('User granted permission: ${settings.authorizationStatus}');
 }
 
+// localNotificationInitial() {
+//  la FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//       FlutterLocalNotificationsPlugin();
 
+//   AndroidInitializationSettings androidInitializationSettings =
+//       const AndroidInitializationSettings('@mipmap/ic_launcher');
+//   InitializationSettings initializationSettings = InitializationSettings(
+//     android: androidInitializationSettings,
+//   );
+
+//   flutterLocalNotificationsPlugin.initialize(
+//     initializationSettings,
+//     onDidReceiveNotificationResponse: (details) {},
+//   );
+// }
