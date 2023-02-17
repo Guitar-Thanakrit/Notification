@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:notfi/notification.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -22,10 +24,27 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   foregroundMessage() {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessage.listen((message) {
       print(' get foreground Message');
       print('send ${message.data}');
-      if (message.notification != null) {}
+
+      RemoteNotification? notification = message.notification;
+      if (notification != null) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              channelDescription: channel.description,
+              importance: Importance.max,
+              priority: Priority.max,
+            ),
+          ),
+        );
+      }
     });
   }
 

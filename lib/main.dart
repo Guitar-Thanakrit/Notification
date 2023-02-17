@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:notfi/firebase_config.dart';
 import 'package:notfi/home.dart';
+import 'package:notfi/notification.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 Future<void> _firebaseMessagingOnBackground(RemoteMessage message) async {
@@ -13,29 +14,31 @@ Future<void> _firebaseMessagingOnBackground(RemoteMessage message) async {
   print('============================');
 }
 
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
-void main() async {
-  await notificationConfig();
+Future<void> main() async {
+  //firebase setup
   await firebaseInitialized();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingOnBackground);
-
   var status = await Permission.notification.isGranted;
   // ignore: avoid_print
   print(status);
 
-  // flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  //BackgroundMessage
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingOnBackground);
 
-  // AndroidInitializationSettings androidInitializationSettings =
-  //     const AndroidInitializationSettings('@mipmap/ic_launcher');
-  // InitializationSettings initializationSettings = InitializationSettings(
-  //   android: androidInitializationSettings,
-  // );
+  //initailse plugin.
 
-  // flutterLocalNotificationsPlugin.initialize(
-  //   initializationSettings,
-  //   onDidReceiveNotificationResponse: (details) {},
-  // );
+  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  InitializationSettings initializationSettings = const InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onDidReceiveNotificationResponse:
+          ((NotificationResponse notificationResponse) async {
+    log("---------------------------------------------");
+    // notificationResponse
+  }));
 
   runApp(const MyApp());
 }
