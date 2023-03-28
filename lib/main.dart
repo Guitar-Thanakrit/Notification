@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:device_info/device_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -39,6 +40,10 @@ Future<void> main() async {
     log("---------------------------------------------");
     // notificationResponse
   }));
+
+  var androidInfo = await DeviceInfoPlugin().androidInfo;
+  var release = androidInfo.version.release;
+  var sdkInt = androidInfo.version.sdkInt;
 
   runApp(const MyApp());
 }
